@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure consistent background colors and prevent color mixing during scroll */
+@layer base {
+  html {
+    @apply bg-gray-50 dark:bg-gray-900;
+  }
+  
+  body {
+    @apply bg-gray-50 dark:bg-gray-900;
+    /* Prevent background attachment issues on mobile */
+    background-attachment: fixed;
+  }
+  
+  /* Ensure root container maintains background */
+  #root {
+    @apply min-h-screen bg-gray-50 dark:bg-gray-900;
+  }
+}
+
+/* Smooth transitions for dark mode */
+@layer utilities {
+  .transition-colors {
+    transition-property: color, background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+}
+
+/* Prevent overscroll bounce on iOS Safari that can cause background color issues */
+@supports (-webkit-touch-callout: none) {
+  body {
+    overscroll-behavior: none;
+  }
+}
